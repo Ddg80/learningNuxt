@@ -13,6 +13,14 @@ const onSearch = (searchTerm) => {
     searchError.value = true;
   }
 };
+
+//FETCH
+const movieId = ref(123);
+const title = ref("Kung Fu Panda 4");
+const date = ref("2024-03-02");
+const poster = ref(
+  "https://www.cinehorizons.net/sites/default/files/affiches/671046041-kung-fu-panda-4.jpg"
+);
 </script>
 
 <template>
@@ -21,7 +29,14 @@ const onSearch = (searchTerm) => {
     <div
       class="grid md:grid-cols-4 sm:grid-cols-1 justify-items-center bg-sky-50"
     >
-      <MovieCard />
+      <div v-for="n in 8">
+        <MovieCard
+          :movieId="movieId"
+          :title="title"
+          :date="date"
+          :poster="poster"
+        />
+      </div>
     </div>
   </div>
 </template>
