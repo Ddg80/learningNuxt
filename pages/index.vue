@@ -20,6 +20,8 @@ const onSearch = (searchTerm) => {
     <SearchBar @search="onSearch" :searchError="searchError" />
     <div
       class="grid md:grid-cols-4 sm:grid-cols-1 justify-items-center bg-sky-50"
-    ></div>
+    >
+      <MovieCard />
+    </div>
   </div>
 </template>
