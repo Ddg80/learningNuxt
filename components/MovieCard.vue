@@ -14,7 +14,7 @@ defineProps(["movieId", "title", "date", "poster"]);
         <p class="text-gray-500 text-sm mb-2 p-2">Release Date : {{ date }}</p>
         <div class="mt-4 p-2 text-right">
           <NuxtLink
-            to="#"
+            :to="`movie/${movieId}`"
             class="bg-rose-500 hover:bg-rose-600 text-white font-medium py-2 px-4 rounded"
             >Get Details
           </NuxtLink>
