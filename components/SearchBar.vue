@@ -1,5 +1,8 @@
 <script setup>
 import { ref } from "vue";
+
+defineProps(["searchError"]);
+
 const emit = defineEmits(["search"]);
 const searchInput = ref("");
 
@@ -27,6 +30,9 @@ const searchMovie = () => {
           Rechercher
         </button>
       </div>
+      <span v-if="searchError" class="text-red-700 px-4 py-3" role="alert">
+        this field is required
+      </span>
     </div>
   </section>
 </template>
