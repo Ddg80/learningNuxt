@@ -23,13 +23,16 @@ pnpm dlx nuxi@latest init <project-name>
 
 <template>
   <div>
+    <Navbar />
+    <Hero />
     <slot />
   </div>
 </template>
-
 ```
 
-3- Create page with default page
+3- Create page with default page (GLOBAL)
+
+**app.vue**
 
 ```Js
 <template>
@@ -39,4 +42,31 @@ pnpm dlx nuxi@latest init <project-name>
     </NuxtLayout>
   </div>
 </template>
+```
+
+### Custom page
+
+1- Create page with custom page (individual page)
+
+```Js
+<script setup></script>
+
+<template>
+  <div>
+    <Navbar />
+    <slot />
+  </div>
+</template>
+```
+
+2- Add custom page in login (without banner)
+
+**pages - Login.vue**
+
+```Js
+<script setup>
+definePageMeta({
+  layout: "custom",
+});
+</script>
 ```
