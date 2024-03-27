@@ -5,7 +5,6 @@ const searchInput = ref("");
 
 const searchMovie = () => {
   console.log(searchInput.value);
-  // Émettre le terme de recherche vers le composant parent
   emit("search", searchInput.value);
 };
 </script>
