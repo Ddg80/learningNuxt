@@ -10,9 +10,7 @@ const onSearch = (searchTerm) => {
   }
 };
 
-const {data: movies, error} = await useFetch(
-  'https://api.themoviedb.org/3/movie/now_playing?api_key=9252a363c4520be2fb02fb5a4d0bff80'
-)
+const {data: movies, error} = await useFetch("/api/movies")
 // &language=en-US&page=1
 
 </script>

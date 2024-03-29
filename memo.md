@@ -122,9 +122,12 @@ export default defineNuxtConfig({
 
 1- Create folder server/api/movies
 2- Use defineEventHandler
+3- Define MOVIE_API_KEY=<YOUR API KEY>
+
 
 ```JS
 export default defineEventHandler(async () => {
+  const {movieKey} = useRuntimeConfig()
     try {
         const data = await $fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=9252a363c4520be2fb02fb5a4d0bff80')
         console.log(data);
