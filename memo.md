@@ -2,6 +2,8 @@
 
 ```Js
 pnpm dlx nuxi@latest init <project-name>
+cd project-name
+pnpm add --save-dev @nuxtjs/tailwindcss
 ```
 
 ## Pages
@@ -70,3 +72,6 @@ definePageMeta({
 });
 </script>
 ```
+
+## Page Details 
+
