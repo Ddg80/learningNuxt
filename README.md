@@ -201,7 +201,7 @@ export default defineNuxtConfig({
 
 1- Create folder server/api/movies
 2- Use defineEventHandler
-3- Define MOVIE_API_KEY=<YOUR API KEY>
+3- Define MOVIE_API_KEY=YOUR API KEY
 
 
 ```JS
