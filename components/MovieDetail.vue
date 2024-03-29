@@ -1,12 +1,5 @@
 <script setup lang="ts">
-// defineProps(['title', 'date', 'poster', 'revenue', 'overview'])
-defineProps({
-    title: {type: String, required: true},
-    date: {type: String, required: true},
-    poster: {type: String, required: true},
-    revenue: {type: String, required: true},
-    overview: {type: String, required: true}
-})
+defineProps(['title', 'date', 'poster', 'revenue', 'overview', 'trailer'])
 </script>
 <template>
     <div class="gird sm:grid-cols-3 gap-7 justify-items-center m-10">
@@ -22,7 +15,7 @@ defineProps({
             <p class="text-gray-500 text-md">Revenue: ${{ revenue }}</p>
             <div class="mt-6">
                 <NuxtLink 
-                to="https://www.youtube.com/watch?v=_inKs4eeHiI"
+                :to="`https://www.youtube.com/watch?v=${trailer}`"
                 target="_blank"
                 class="bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2 px-4 rounded"
                 >
