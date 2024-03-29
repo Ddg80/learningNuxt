@@ -1,6 +1,7 @@
 export default defineEventHandler(async () => {
+    const {movieKey} = useRuntimeConfig()
     try {
-        const data = await $fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=9252a363c4520be2fb02fb5a4d0bff80')
+        const data = await $fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${movieKey}`)
         console.log(data);
         return data
     } catch (error) {
