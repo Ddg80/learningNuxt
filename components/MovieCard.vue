@@ -1,5 +1,5 @@
 <script setup>
-defineProps(["movieId", "title", "date", "poster"]);
+const props = defineProps(["movieId", "title", "date", "poster"]);
 </script>
 <template>
   <div class="bg-sky-50 rounded-lg shadow-md overflow-hidden m-4 px-2">
@@ -8,7 +8,7 @@ defineProps(["movieId", "title", "date", "poster"]);
       <div class="overflow-hidden mb-4">
         <img
           class="h-400 w-300 object-cover"
-          :src="poster"
+          :src="`http://image.tmdb.org/t/p/w500/${poster}`"
           alt="Placeholder image"
         />
         <p class="text-gray-500 text-sm mb-2 p-2">Release Date : {{ date }}</p>

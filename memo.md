@@ -75,3 +75,45 @@ definePageMeta({
 
 ## Page Details 
 
+1- Create page [id].vue
+
+2- Link to page movie details
+
+```JS
+  <div class="mt-4 p-2 text-right">
+          <NuxtLink
+            :to="`movie/${movieId}`"
+            class="bg-rose-500 hover:bg-rose-600 text-white font-medium py-2 px-4 rounded"
+            >Get Details
+          </NuxtLink>
+        </div>
+```
+
+## Transition page
+
+1- Config transition page
+
+```JS
+export default defineNuxtConfig({
+  devtools: { enabled: true },
+  modules: ["@nuxtjs/tailwindcss"],
+  app: {
+    pageTransition: {name: "page", mode: "out-in"}
+  }
+});
+```
+
+2- In app.vue : add style
+
+```JS
+<style>
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.2s;
+}
+.page-enter-from,
+.page-leave-to {
+  filter: grayscale(1)
+}
+</style>
+```
