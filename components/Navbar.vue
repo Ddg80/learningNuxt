@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <nav class="bg-indigo-900">
+    <nav class="bg-gradient-to-r from-blue-300 to-blue-600">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
           <div class="mt-4 sm:ml-6 sm:flex sm:items-center">

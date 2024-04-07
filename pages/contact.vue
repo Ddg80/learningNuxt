@@ -156,12 +156,13 @@ definePageMeta({
                       class="pb-1 text-xs uppercase tracking-wider"
                     ></label
                     ><input
+                      v-model="username"
                       type="text"
-                      id="name"
+                      id="username"
                       autocomplete="given-name"
-                      placeholder="Your name"
+                      placeholder="Your username"
                       class="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md dark:text-gray-300 sm:mb-0"
-                      name="name"
+                      name="username"
                     />
                   </div>
                   <div class="mx-0 mb-1 sm:mb-4">
@@ -170,6 +171,7 @@ definePageMeta({
                       class="pb-1 text-xs uppercase tracking-wider"
                     ></label
                     ><input
+                      v-model="email"
                       type="email"
                       id="email"
                       autocomplete="email"
@@ -181,12 +183,13 @@ definePageMeta({
                 </div>
                 <div class="mx-0 mb-1 sm:mb-4">
                   <label
-                    for="textarea"
+                    for="message"
                     class="pb-1 text-xs uppercase tracking-wider"
                   ></label
                   ><textarea
-                    id="textarea"
-                    name="textarea"
+                    v-model="message"
+                    id="message"
+                    name="message"
                     cols="30"
                     rows="5"
                     placeholder="Write your message..."
@@ -197,7 +200,7 @@ definePageMeta({
               <div class="text-center">
                 <button
                   type="submit"
-                  class="w-full bg-blue-800 text-white px-6 py-3 font-xl rounded-md sm:mb-0"
+                  class="w-full bg-gradient-to-r from-blue-300 to-blue-600 text-white px-6 py-3 font-xl rounded-md sm:mb-0"
                 >
                   Send Message
                 </button>
