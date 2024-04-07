@@ -4,7 +4,7 @@ const props = defineProps(["movieId", "title", "date", "poster"]);
 <template>
   <div class="bg-sky-50 rounded-lg shadow-md overflow-hidden m-4 px-2">
     <div class="p-1 py-4">
-      <h3 class="font-semibold text-lg mb-2 text-center">{{ title }}</h3>
+      <h3 class="font-semibold text-lg mb-2 text-center h-20">{{ title }}</h3>
       <div class="overflow-hidden mb-4">
         <img
           class="h-400 w-300 object-cover"
