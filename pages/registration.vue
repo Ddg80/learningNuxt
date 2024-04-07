@@ -2,10 +2,14 @@
 definePageMeta({
   layout: "custom",
 });
-
+const client = useSupabaseClient();
 const email = ref("")
 const password = ref(null)
 const confirmPassword = ref(null)
+
+async function userRegister() {
+  
+}
 </script>
 
 <template>
