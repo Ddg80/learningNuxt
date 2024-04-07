@@ -1,6 +1,7 @@
 <script setup>
 definePageMeta({
   layout: "custom",
+  middleware: ['auth']
 });
 const username = ref("")
 const email = ref(null)

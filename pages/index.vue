@@ -1,4 +1,10 @@
 <script setup>
+definePageMeta({
+  middleware: [
+    'auth',
+  ]
+});
+
 import SearchBar from "../components/SearchBar.vue";
 let searchError = ref(false);
 const movies = ref([]);
