@@ -2,6 +2,10 @@
 definePageMeta({
   layout: "custom",
 });
+
+const email = ref("")
+const password = ref(null)
+const confirmPassword = ref(null)
 </script>
 
 <template>
