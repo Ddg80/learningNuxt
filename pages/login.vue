@@ -1,7 +1,9 @@
 <script setup>
+import { useAuthStore } from "~/store/auth";
 definePageMeta({
   layout: "custom",
 });
+const authStore = useAuthStore();
 const { auth } = useSupabaseClient()
 const user = useSupabaseUser();
 const email = ref("")
@@ -31,6 +33,7 @@ const userLogin = async () => {
 
 watchEffect(() => {
   if (user.value) {
+    authStore.setIsAuthenticated(true);
     return navigateTo('/');
   }
 });
