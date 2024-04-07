@@ -1,4 +1,15 @@
-<script setup></script>
+<script setup lang="ts">
+import { storeToRefs } from 'pinia';
+import {useAuthStore} from '~/store/auth'
+const router = useRouter()
+const {logUserOut} = useAuthStore()
+const {authenticated} = storeToRefs(useAuthStore())
+
+const logout = () => {
+  logUserOut()
+  router.push('/login')
+}
+</script>
 
 <template>
   <div>
@@ -12,14 +23,22 @@
               >Home</NuxtLink
             >
             <NuxtLink
+              v-if="!authenticated"
               to="/login"
               class="text-white py-2 px-3 rounded-md text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
               >Login</NuxtLink
             >
             <NuxtLink
+              v-if="!authenticated"
               to="/registration"
               class="text-white py-2 px-3 rounded-md text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
               >Registration
+            </NuxtLink>
+            <NuxtLink
+              v-if="authenticated"
+              @click="logout"
+              class="text-white py-2 px-3 rounded-md text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
+              >Logout
             </NuxtLink>
             <NuxtLink
               to="/contact"

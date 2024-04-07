@@ -3,6 +3,10 @@ import SearchBar from "../components/SearchBar.vue";
 let searchError = ref(false);
 const movies = ref([]);
 
+definePageMeta({
+  middleware: 'auth'
+})
+
 const onSearch = async (searchTerm) => {
   if (searchTerm !== "") {
     searchError.value = false;

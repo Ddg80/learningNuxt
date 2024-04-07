@@ -2,6 +2,24 @@
 definePageMeta({
   layout: "custom",
 });
+import { storeToRefs } from 'pinia';
+import { useAuthStore } from '~/store/auth';
+
+const { authenticateUser } = useAuthStore(); 
+const { authenticated } = storeToRefs(useAuthStore());
+
+const user = ref({
+  username: 'kminchelle',
+  password: '0lelplR',
+});
+const router = useRouter();
+
+const signIn = async () => {
+  await authenticateUser(user.value);
+  if (authenticated) {
+    router.push("/")
+  }
+};
 </script>
 
 <template>
@@ -26,6 +44,7 @@ definePageMeta({
             />
           </svg>
           <input
+            v-model="user.username"
             type="text"
             id="username"
             class="bg-gray-200 rounded pl-12 py-2 md:py-4 focus:outline-none w-full"
@@ -39,6 +58,7 @@ definePageMeta({
             />
           </svg>
           <input
+            v-model="user.password"
             type="password"
             id="password"
             class="bg-gray-200 rounded pl-12 py-2 md:py-4 focus:outline-none w-full"
@@ -47,6 +67,7 @@ definePageMeta({
         </div>
         <button
           class="bg-gradient-to-b from-gray-700 to-gray-900 font-medium p-2 md:p-4 text-white uppercase w-full rounded"
+          @click.prevent="signIn"
         >
           Sign in
         </button>
