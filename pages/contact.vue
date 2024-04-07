@@ -2,6 +2,9 @@
 definePageMeta({
   layout: "custom",
 });
+const username = ref("")
+const email = ref(null)
+const message = ref(null)
 </script>
 <template>
   <section class="bg-blue-50 dark:bg-slate-800" id="contact">
