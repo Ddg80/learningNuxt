@@ -4,11 +4,12 @@ import {storeToRefs} from 'pinia'
 
 const { auth } = useSupabaseClient();
 const authStore = useAuthStore();
+const router = useRouter();
 const userLogout = async () => {
   authStore.setIsAuthenticated(false);
   await auth.signOut();
+  router.push('/login')
 };
-
 const {getIsAuthenticated} = storeToRefs(authStore)
 </script>
 
