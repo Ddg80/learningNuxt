@@ -1,4 +1,9 @@
-<script setup></script>
+<script setup>
+const { auth } = useSupabaseClient();
+const userLogout = async () => {
+  await auth.signOut();
+};
+</script>
 
 <template>
   <div>
@@ -26,6 +31,11 @@
               class="text-white py-2 px-3 rounded-md text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
               >Contact</NuxtLink
             >
+            <NuxtLink
+              @click="userLogout"
+              class="text-white py-2 px-3 rounded-md text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
+              >Logout
+            </NuxtLink>
           </div>
         </div>
       </div>

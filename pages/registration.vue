@@ -2,14 +2,49 @@
 definePageMeta({
   layout: "custom",
 });
-const client = useSupabaseClient();
+const user = useSupabaseUser();
+const { auth } = useSupabaseClient()
 const email = ref("")
+let loading = ref(false)
 const password = ref(null)
 const confirmPassword = ref(null)
+const errorMsg = ref("")
 
 async function userRegister() {
-  
+  loading = true;
+  if (password.value !== confirmPassword.value) {
+    errorMsg.value = "Passwords do not match!"
+    password.value = ""
+    confirmPassword.value = ""
+    setTimeout(() => {
+      errorMsg.value = ""
+    }, 3000)
+    loading = false
+    return
+  }
+  try {
+    const { error } = await auth.signUp({
+      email: email.value,
+      password: password.value
+    })
+    email.value = ""
+    password.value = ""
+    confirmPassword.value = ""
+
+    if (error) throw error
+  } catch (error) {
+    errorMsg.value = error.message
+    setTimeout(() => {
+      errorMsg.value = ""
+    }, 3000);
+  }
 }
+
+watchEffect(() => {
+  if (user.value) {
+    return navigateTo('/');
+  }
+});
 </script>
 
 <template>
@@ -25,9 +60,7 @@ async function userRegister() {
       >
         <div class="max-w-md mx-auto">
           <div>
-            <h1 class="text-2xl font-semibold">
-              Register Form
-            </h1>
+            <h1 class="text-2xl font-semibold">Register Form</h1>
           </div>
           <div class="divide-y divide-gray-200">
             <form
@@ -90,7 +123,13 @@ async function userRegister() {
                   Submit
                 </button>
               </div>
-              <!-- <span v-if="errorMsg">{{ errorMsg }}</span> -->
+              <div
+              v-if="errorMsg"
+                class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                role="alert"
+              >
+                <span class="font-medium" >{{ errorMsg }}</span>
+              </div>
               <p class="mt-3 text-xs">Do you have an account yet?</p>
               <nuxt-link to="/login">Login</nuxt-link>
             </form>

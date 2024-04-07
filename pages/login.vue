@@ -2,8 +2,38 @@
 definePageMeta({
   layout: "custom",
 });
+const { auth } = useSupabaseClient()
+const user = useSupabaseUser();
 const email = ref("")
 const password = ref(null)
+const errorMsg = ref("")
+const successMsg = ref("")
+
+const userLogin = async () => {
+  try {
+    const { error } = await auth.signInWithPassword({
+      email: email.value,
+      password: password.value
+    });
+
+    email.value = ''
+    password.value = ''
+
+    if (error) throw error
+    successMsg.value = "Check your email for confirmation";
+  } catch (error) {
+    errorMsg.value = error.message
+    setTimeout(() => {
+      errorMsg.value = ''
+    }, 3000)
+  }
+};
+
+watchEffect(() => {
+  if (user.value) {
+    return navigateTo('/');
+  }
+});
 </script>
 
 <template>
@@ -20,12 +50,12 @@ const password = ref(null)
         <div class="max-w-md mx-auto">
           <div>
             <h1 class="text-2xl font-semibold">
-              Register Form
+              Login Form
             </h1>
           </div>
           <div class="divide-y divide-gray-200">
             <form
-              @submit.prevent="userRegister"
+              @submit.prevent="userLogin"
               class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7"
             >
               <div class="relative">
@@ -68,7 +98,20 @@ const password = ref(null)
                   Submit
                 </button>
               </div>
-              <!-- <span v-if="errorMsg">{{ errorMsg }}</span> -->
+              <div
+              v-if="errorMsg"
+                class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                role="alert"
+              >
+                <span class="font-medium" >{{ errorMsg }}</span>
+              </div>
+              <div
+              v-if="successMsg"
+                class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                role="alert"
+              >
+                <span class="font-medium" >{{ successMsg }}</span>
+              </div>
               <p class="mt-3 text-xs">Do you have an account yet?</p>
               <nuxt-link to="/registration">Register</nuxt-link>
             </form>
