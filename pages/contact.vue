@@ -1,4 +1,6 @@
 <script setup>
+import { useAuthStore } from '~/store/auth';
+
 definePageMeta({
   layout: "custom",
   middleware: ['auth']
@@ -8,8 +10,11 @@ const email = ref(null)
 const message = ref(null)
 const object = ref(null)
 
+const toast = useToast()
+const authStore = useAuthStore();
+
 async function sendMail() {
-  const { body } = await $fetch('/api/sendEmail', {
+  await $fetch('/api/sendEmail', {
     method: 'POST',
     body: { 
       username: username.value,
@@ -17,9 +22,23 @@ async function sendMail() {
       message: message.value,
       object: object.value
     }
+  }).then((res) => {
+    if(res) {
+      toast.add({
+        id: "is_send_mail",
+      title: "Information",
+      description: `${username.value}, votre email a été transmis avec succès.  `,
+      icon: "i-octicon-desktop-download-24",
+      timeout: 3000,
+      })
+    }
+  }).catch((error) => {
+    console.log(error);
   })
-  console.log(body);
 }
+
+
+
 </script>
 <template>
   <section class="bg-blue-50 dark:bg-slate-800" id="contact">

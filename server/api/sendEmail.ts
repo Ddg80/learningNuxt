@@ -15,7 +15,8 @@ export default defineEventHandler(async (event) => {
       text: body.message
     });
     if (!info.messageId) throw Error();
-    return [`Message sent to ${body.email}`, null];
+    
+    return `Message sent to ${body.email}`;
   } catch(error) {
     console.log(error);
   }
