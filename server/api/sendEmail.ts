@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
     const message = body.message;
     const from = body.message;
     let info = await transporter.sendMail({
-      from: `"Contact Us - Nuxt.js Mailer" <${from}>`,
+      from: `"Contact Us - Nuxt.js Mailer" ${username} <${from}>`,
       to: to,
       subject: body.subject,
       text: body.message
