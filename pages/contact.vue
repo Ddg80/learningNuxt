@@ -6,6 +6,20 @@ definePageMeta({
 const username = ref("")
 const email = ref(null)
 const message = ref(null)
+const object = ref(null)
+
+async function sendMail() {
+  const { body } = await $fetch('/api/sendEmail', {
+    method: 'POST',
+    body: { 
+      username: username.value,
+      email: email.value,
+      message: message.value,
+      object: object.value
+    }
+  })
+  console.log(body);
+}
 </script>
 <template>
   <section class="bg-blue-50 dark:bg-slate-800" id="contact">
@@ -151,7 +165,7 @@ const message = ref(null)
           </div>
           <div class="card h-fit max-w-6xl p-5 md:p-12" id="form">
             <h2 class="mb-4 text-2xl font-bold">Ready to Get Started?</h2>
-            <form id="contactForm">
+            <form id="contactForm" @submit.prevent="sendMail">
               <div class="mb-6">
                 <div class="mx-0 mb-1 sm:mb-4">
                   <div class="mx-0 mb-1 sm:mb-4">
@@ -167,6 +181,21 @@ const message = ref(null)
                       placeholder="Your username"
                       class="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md dark:text-gray-300 sm:mb-0"
                       name="username"
+                    />
+                  </div>
+                  <div class="mx-0 mb-1 sm:mb-4">
+                    <label
+                      for="name"
+                      class="pb-1 text-xs uppercase tracking-wider"
+                    ></label
+                    ><input
+                      v-model="object"
+                      type="text"
+                      id="object"
+                      autocomplete="given-name"
+                      placeholder="Object : "
+                      class="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md dark:text-gray-300 sm:mb-0"
+                      name="object"
                     />
                   </div>
                   <div class="mx-0 mb-1 sm:mb-4">
