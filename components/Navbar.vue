@@ -3,11 +3,21 @@ import { useAuthStore } from "~/store/auth";
 import {storeToRefs} from 'pinia'
 
 const { auth } = useSupabaseClient();
+const toast = useToast();
 const authStore = useAuthStore();
 const router = useRouter();
 const userLogout = async () => {
   authStore.setIsAuthenticated(false);
   await auth.signOut();
+  if (!authStore.getIsFirstConnect) {
+    toast.add({
+      id: "is_not_authenticated",
+      title: "Information",
+      description: "Au revoir",
+      icon: "i-octicon-desktop-download-24",
+      timeout: 3000,
+  });
+}
   router.push('/login')
 };
 const {getIsAuthenticated} = storeToRefs(authStore)

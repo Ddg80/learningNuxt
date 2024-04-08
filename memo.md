@@ -56,6 +56,10 @@ Création d'un projet nuxt avec pnpm içi.
 pnpm dlx nuxi@latest init <project-name>
 cd project-name
 pnpm add --save-dev @nuxtjs/tailwindcss
+pnpm add @nuxt/supabase
+pnpm add @nuxt/ui
+pnpm i --save-dev @nuxtjs/color-mode
+pnpm install nodemailer
 ```
 
 ## Pages

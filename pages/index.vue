@@ -1,9 +1,23 @@
 <script setup>
+import { useAuthStore } from "~/store/auth";
 definePageMeta({
-  middleware: [
-    'auth',
-  ]
+  middleware: ["auth"],
 });
+
+const toast = useToast();
+const authStore = useAuthStore();
+
+if (authStore.getIsFirstConnect) {
+  onMounted(() => {
+    toast.add({
+      id: "is_authenticated",
+      title: "Information",
+      description: "Bienvenue",
+      icon: "i-octicon-desktop-download-24",
+      timeout: 3000,
+    });
+  });
+}
 
 import SearchBar from "../components/SearchBar.vue";
 let searchError = ref(false);
@@ -12,14 +26,16 @@ const movies = ref([]);
 const onSearch = async (searchTerm) => {
   if (searchTerm !== "") {
     searchError.value = false;
-    const {data, error} = await useFetch(`/api/movies/search?searchInput=${searchTerm}`)
+    const { data, error } = await useFetch(
+      `/api/movies/search?searchInput=${searchTerm}`
+    );
     movies.value = data.value;
   } else {
     searchError.value = true;
   }
 };
 
-const {data, error} = await useFetch("/api/movies")
+const { data, error } = await useFetch("/api/movies");
 // &language=en-US&page=1
 movies.value = data.value;
 </script>
