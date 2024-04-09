@@ -9,10 +9,10 @@
       <h3 class="text-lg font-bold text-black">Movies, TV shows and more.</h3>
       <div class="mt-6">
         <NuxtLink
-          href="/registration"
+          href="/about"
           class="bg-indigo-500 hover:bg-indigo-600 text-white rounded-full font-medium py-2 px-4"
         >
-          Get Started
+          About us
         </NuxtLink>
       </div>
     </div>

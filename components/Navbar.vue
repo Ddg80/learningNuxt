@@ -55,6 +55,12 @@ const {getIsAuthenticated} = storeToRefs(authStore)
             >
             <NuxtLink
               v-if="getIsAuthenticated"
+              to="/about"
+              class="text-white py-2 px-3 rounded-md text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
+              >About
+            </NuxtLink>
+            <NuxtLink              
+              v-if="getIsAuthenticated"
               @click="userLogout"
               class="text-white py-2 px-3 rounded-md text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
               >Logout

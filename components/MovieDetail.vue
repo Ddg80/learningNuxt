@@ -3,8 +3,8 @@ defineProps(['title', 'date', 'poster', 'revenue', 'overview', 'trailer'])
 </script>
 <template>
     <div class="gird sm:grid-cols-3 gap-7 justify-items-center m-10">
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-            <img class="h-400 w-full object-cover"  :src="`http://image.tmdb.org/t/p/w500/${poster}`" alt="Placeholder image">
+        <div class="flex justify-start bg-white">
+            <img class="h-400 object-cover rounded-lg"  :src="`http://image.tmdb.org/t/p/w500/${poster}`" alt="Placeholder image">
         </div>
         <div class="sm:col-span-2 mx-6">
             <h1 class="font-bold text-2xl mb-5 mt-4">{{ title }}</h1>
