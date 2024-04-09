@@ -3,14 +3,14 @@ definePageMeta({
   layout: "custom",
 });
 
-const { auth } = useSupabaseClient()
+const { auth } = useSupabaseClient();
 const toast = useToast();
 const router = useRouter();
-const email = ref("")
-let loading = ref(false)
-const password = ref(null)
-const confirmPassword = ref(null)
-const errorMsg = ref("")
+const email = ref("");
+let loading = ref(false);
+const password = ref(null);
+const confirmPassword = ref(null);
+const errorMsg = ref("");
 
 async function userRegister() {
   loading = true;

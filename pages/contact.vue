@@ -1,6 +1,4 @@
 <script setup>
-import { useAuthStore } from '~/store/auth';
-
 definePageMeta({
   layout: "custom",
   middleware: ['auth']
@@ -11,7 +9,6 @@ const message = ref(null)
 const object = ref(null)
 
 const toast = useToast()
-const authStore = useAuthStore();
 
 async function sendMail() {
   await $fetch('/api/sendEmail', {

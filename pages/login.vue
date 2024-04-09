@@ -1,15 +1,17 @@
 <script setup>
 import { useAuthStore } from "~/store/auth";
+import { useSessionStore } from "~/store/session";
 definePageMeta({
   layout: "custom",
 });
 const authStore = useAuthStore();
-const { auth } = useSupabaseClient()
+const sessionStore = useSessionStore();
+const { auth } = useSupabaseClient();
 const user = useSupabaseUser();
-const email = ref("")
-const password = ref(null)
-const errorMsg = ref("")
-const successMsg = ref("")
+const email = ref("");
+const password = ref(null);
+const errorMsg = ref("");
+const successMsg = ref("");
 
 const userLogin = async () => {
   try {
@@ -22,6 +24,8 @@ const userLogin = async () => {
     password.value = ''
 
     if (error) throw error
+    authStore.setIsAuthenticated(true);
+    sessionStore.setIsFirstConnect(true);
     successMsg.value = "Check your email for confirmation";
   } catch (error) {
     errorMsg.value = error.message
@@ -33,7 +37,6 @@ const userLogin = async () => {
 
 watchEffect(() => {
   if (user.value) {
-    authStore.setIsAuthenticated(true);
     return navigateTo('/');
   }
 });

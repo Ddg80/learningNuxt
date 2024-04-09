@@ -1,13 +1,17 @@
 <script setup>
 import { useAuthStore } from "~/store/auth";
+import SearchBar from "../components/SearchBar.vue";
+import { useSessionStore } from "~/store/session";
+
 definePageMeta({
   middleware: ["auth"],
 });
 
 const toast = useToast();
 const authStore = useAuthStore();
+const sessionStore = useSessionStore();
 
-if (authStore.getIsFirstConnect) {
+if (authStore.getIsAuthenticated && sessionStore.getIsFirstConnect) {
   toast.add({
     id: "is_authenticated",
     title: "Information",
@@ -15,10 +19,10 @@ if (authStore.getIsFirstConnect) {
     icon: "i-heroicons-check-circle",
     timeout: 3000,
   });
-  authStore.setIsFirstConnect(false)
+  sessionStore.setIsFirstConnect(false)
 }
 
-import SearchBar from "../components/SearchBar.vue";
+
 let searchError = ref(false);
 const movies = ref([]);
 
