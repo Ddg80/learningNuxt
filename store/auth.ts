@@ -11,6 +11,9 @@ export const useAuthStore = defineStore('auth', {
         this.firstConnect = userIsConnected
         console.log(this.isAuthenticated);
       },
+      setIsFirstConnect (firstCo: boolean) {
+        this.firstConnect = firstCo
+      }
     },
     getters: {
       getIsAuthenticated: state => state.isAuthenticated,

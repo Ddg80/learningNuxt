@@ -9,7 +9,7 @@ const router = useRouter();
 const userLogout = async () => {
   authStore.setIsAuthenticated(false);
   await auth.signOut();
-  if (!authStore.getIsFirstConnect) {
+  if (!authStore.getIsAuthenticated) {
     toast.add({
       id: "is_not_authenticated",
       title: "Information",

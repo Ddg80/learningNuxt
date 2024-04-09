@@ -8,15 +8,14 @@ const toast = useToast();
 const authStore = useAuthStore();
 
 if (authStore.getIsFirstConnect) {
-  onMounted(() => {
-    toast.add({
-      id: "is_authenticated",
-      title: "Information",
-      description: "Bienvenue",
-      icon:"i-heroicons-check-circle",
-      timeout: 3000,
-    });
+  toast.add({
+    id: "is_authenticated",
+    title: "Information",
+    description: "Bienvenue",
+    icon: "i-heroicons-check-circle",
+    timeout: 3000,
   });
+  authStore.setIsFirstConnect(false)
 }
 
 import SearchBar from "../components/SearchBar.vue";
