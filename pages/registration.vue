@@ -1,11 +1,11 @@
 <script setup>
-import { useAuthStore } from "~/store/auth";
 definePageMeta({
   layout: "custom",
 });
-const authStore = useAuthStore();
-const user = useSupabaseUser();
+
 const { auth } = useSupabaseClient()
+const toast = useToast();
+const router = useRouter();
 const email = ref("")
 let loading = ref(false)
 const password = ref(null)
@@ -25,7 +25,7 @@ async function userRegister() {
     return
   }
   try {
-    const { error } = await auth.signUp({
+    const {data, error } = await auth.signUp({
       email: email.value,
       password: password.value
     })
@@ -34,6 +34,17 @@ async function userRegister() {
     confirmPassword.value = ""
 
     if (error) throw error
+    if(data) {
+      router.push('/login')
+      toast.add({
+        id: "is_register",
+        title: "Information",
+        description: 'Votre inscription a bien été prise en compte.',
+        icon:"i-heroicons-check-circle",
+        timeout: 3000,
+      })
+    }
+
   } catch (error) {
     errorMsg.value = error.message
     setTimeout(() => {
@@ -41,13 +52,6 @@ async function userRegister() {
     }, 3000);
   }
 }
-
-watchEffect(() => {
-  if (user.value) {
-    authStore.setIsAuthenticated(true);
-    return navigateTo('/');
-  }
-});
 </script>
 
 <template>

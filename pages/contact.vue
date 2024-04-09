@@ -28,7 +28,7 @@ async function sendMail() {
         id: "is_send_mail",
       title: "Information",
       description: `${username.value}, votre email a été transmis avec succès.  `,
-      icon: "i-octicon-desktop-download-24",
+      icon:"i-heroicons-check-circle",
       timeout: 3000,
       })
     }

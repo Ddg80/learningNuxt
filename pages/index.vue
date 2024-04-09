@@ -13,7 +13,7 @@ if (authStore.getIsFirstConnect) {
       id: "is_authenticated",
       title: "Information",
       description: "Bienvenue",
-      icon: "i-octicon-desktop-download-24",
+      icon:"i-heroicons-check-circle",
       timeout: 3000,
     });
   });
