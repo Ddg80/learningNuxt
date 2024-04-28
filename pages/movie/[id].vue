@@ -17,9 +17,12 @@ const trailer = computed(() => {
   let trailer = [];
   for (let i = 0; i < allVideo.length; i++) {
     if (allVideo[i].type === "Trailer") {
+      console.log(allVideo[i]);
       trailer.push(allVideo[i]);
     }
-    return trailer[0].key;
+    if(trailer.length > 0) {
+      return trailer[0].key;
+    }
   }
 });
 </script>

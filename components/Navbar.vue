@@ -21,6 +21,7 @@ const userLogout = async () => {
   router.push('/login')
 };
 const {getIsAuthenticated} = storeToRefs(authStore)
+console.log(getIsAuthenticated);
 </script>
 
 <template>

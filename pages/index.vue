@@ -38,9 +38,10 @@ const onSearch = async (searchTerm) => {
   }
 };
 
-const { data, error } = await useFetch("/api/movies");
+const { data: moviesData, error } = await useFetch("/api/movies");
+console.log(toRaw(moviesData.value));
 // &language=en-US&page=1
-movies.value = data.value;
+movies.value = toRaw(moviesData.value);
 </script>
 
 <template>

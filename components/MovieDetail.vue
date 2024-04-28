@@ -2,6 +2,13 @@
 defineProps(['title', 'date', 'poster', 'revenue', 'overview', 'trailer'])
 </script>
 <template>
+    <UButton :ui="{ rounded: 'rounded-full' }" class="mt-4 mx-4">
+        <NuxtLink
+        :to="`/`"
+        >
+            Go to home
+        </NuxtLink>
+    </UButton>
     <div class="gird sm:grid-cols-3 gap-7 justify-items-center m-10">
         <div class="flex justify-start bg-white">
             <img class="h-400 object-cover rounded-lg"  :src="`http://image.tmdb.org/t/p/w500/${poster}`" alt="Placeholder image">
